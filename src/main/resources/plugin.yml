@@ -1,0 +1,11 @@
+name: HyperStorage
+version: 0.0.0
+main: com.github.dumbarudev.storage.HyperStoragePlugin
+description: An example plugin
+author: DUMBARU
+api-version: '26.3'
+commands:
+  storage:
+    usage:
+  adminstorage:
+    usage:
