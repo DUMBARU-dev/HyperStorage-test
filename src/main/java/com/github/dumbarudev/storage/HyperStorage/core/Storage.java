@@ -1,8 +1,5 @@
-package com.github.dumbarudev.storage.Data.Objects;
+package com.github.dumbarudev.storage.HyperStorage.core;
 
-import com.github.dumbarudev.storage.Data.Cache;
-import com.github.dumbarudev.storage.ServiceRegistry;
-import com.github.dumbarudev.storage.StorageCalculator;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -35,10 +32,6 @@ public class Storage {
         this.items = new ArrayList<>(Collections.nCopies(405, null));
     }
 
-    public int getlastpage(){
-        int allowedpages= StorageCalculator.getallowedpages(allowed_slots_size);
-        return (allowedpages/45)+2;
-    }
 
     public void setAllowed_slots_size(int allowed_slots_size) {
         this.allowed_slots_size = allowed_slots_size;
@@ -85,5 +78,6 @@ public class Storage {
         }else if (level==8) {
             allowed_slots_size=405;
         }
+        allowed_pages=StorageCalculator.getallowedpages(allowed_slots_size);
     }
 }

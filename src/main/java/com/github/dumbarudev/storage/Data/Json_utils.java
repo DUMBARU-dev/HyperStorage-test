@@ -1,6 +1,6 @@
 package com.github.dumbarudev.storage.Data;
 
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
 import com.github.dumbarudev.storage.HyperStoragePlugin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,9 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 public class Json_utils {

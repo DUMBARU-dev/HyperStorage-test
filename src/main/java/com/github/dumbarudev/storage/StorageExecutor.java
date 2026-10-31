@@ -13,7 +13,8 @@ public class StorageExecutor {
         if (!plugin.getCache().doplayerexistinhashmap(player)){
             player.kick(Component.text("Please rejoin"));
         }else {
-            if (plugin.getStorageUI().openStorageMainUI(player)){
+//            if (plugin.getStorageUI().openStorageMainUI(player)){
+            if (plugin.getStorageMenu().openStorageMainUI(player)){
                 plugin.getCache().addplayertostorageinventorylist(player);
             }
             player.playSound(player, Sound.BLOCK_LEVER_CLICK,1f,1f);

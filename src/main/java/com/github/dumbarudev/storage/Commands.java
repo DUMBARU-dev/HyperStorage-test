@@ -1,6 +1,7 @@
 package com.github.dumbarudev.storage;
 
 import com.github.dumbarudev.storage.Data.Cache;
+import com.github.dumbarudev.storage.HyperStorage.core.UI.BACKPACK;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -47,6 +48,20 @@ public class Commands implements CommandExecutor {
                         }
                     }
                 }
+            }else if (command.getName().equalsIgnoreCase("backpack")){
+                if(args.length>0){
+                    if (args[0].equalsIgnoreCase("small")){
+                        player.give(BACKPACK.SMALL_BACKPACK.Item());
+                    }
+                }
+            }else if (command.getName().equalsIgnoreCase("enderchest")){
+                int page;
+                if (args.length>0){
+                    page = Integer.parseInt(args[0]);
+                }else {
+                    page=1;
+                }
+                plugin.getEnderChestMenu().openEnderChestUI(page,player);
             }
         }
 

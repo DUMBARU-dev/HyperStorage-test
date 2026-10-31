@@ -1,11 +1,11 @@
-package com.github.dumbarudev.storage.UI;
+package com.github.dumbarudev.storage.HyperStorage.core.UI;
 
 import com.github.dumbarudev.storage.Data.Cache;
-import com.github.dumbarudev.storage.Data.Enums.UIItems;
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
+import com.github.dumbarudev.storage.HyperStorage.api.StorageMenu;
+import com.github.dumbarudev.storage.HyperStorage.core.StorageCalculator;
 import com.github.dumbarudev.storage.HyperStoragePlugin;
 import com.github.dumbarudev.storage.ItemCreator;
-import com.github.dumbarudev.storage.StorageCalculator;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,9 +13,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-public class StorageUI {
+public class StorageUI implements StorageMenu {
     private final HyperStoragePlugin plugin;
     private final Cache cache;
     private final ItemStack[] skeletonitems = new ItemStack[54];
@@ -44,7 +43,7 @@ public class StorageUI {
 
         }
     }
-
+    @Override
     public boolean openStorageMainUI(Player player){
         Storage storage = cache.getPlayerStoragedatafromstorageMap(player);
         int slot = storage.getAllowed_slots_size();

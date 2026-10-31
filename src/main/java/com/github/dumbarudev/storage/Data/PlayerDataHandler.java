@@ -1,6 +1,6 @@
 package com.github.dumbarudev.storage.Data;
 
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
 import com.github.dumbarudev.storage.HyperStoragePlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -24,7 +24,7 @@ public class PlayerDataHandler {
             for (Player player:Bukkit.getOnlinePlayers()){
                 savePlayerData(player);
             }
-        },20,200);
+        },20,6000);
     }
 
     public void savePlayerData(Player player){

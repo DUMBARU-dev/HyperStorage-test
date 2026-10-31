@@ -17,9 +17,9 @@ public class PlayerQuitListener implements Listener {
     @EventHandler
     public void onleave(PlayerQuitEvent event){
         Player player = event.getPlayer();
+        plugin.getPlayerDataHandler().savePlayerData(player);
         cache.remoneplayertostorageinventorylist(player);
         cache.removePlayerfromstorageMap(player);
-
     }
 
 }

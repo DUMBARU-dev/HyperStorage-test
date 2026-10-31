@@ -9,3 +9,7 @@ commands:
     usage:
   adminstorage:
     usage:
+  backpack:
+    usage:
+  enderchest:
+    usage:

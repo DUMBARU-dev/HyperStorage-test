@@ -1,11 +1,10 @@
-package com.github.dumbarudev.storage.Data.Enums;
+package com.github.dumbarudev.storage.HyperStorage.core.UI;
 
 import com.github.dumbarudev.storage.HyperStoragePlugin;
 import com.github.dumbarudev.storage.ItemCreator;
 import com.github.dumbarudev.storage.ServiceRegistry;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 public enum UIItems {
@@ -20,10 +19,6 @@ public enum UIItems {
     private ItemStack item;
     UIItems(ItemStack itemStack){
         item = itemStack;
-<<<<<<< HEAD
-=======
-        //
->>>>>>> 4d63d8b (bug fixes)
     }
 
     public ItemStack Item() {

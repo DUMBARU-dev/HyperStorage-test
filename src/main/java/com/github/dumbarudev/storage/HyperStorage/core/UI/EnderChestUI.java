@@ -1,12 +1,11 @@
-package com.github.dumbarudev.storage.UI;
+package com.github.dumbarudev.storage.HyperStorage.core.UI;
 
 import com.github.dumbarudev.storage.Data.Cache;
-import com.github.dumbarudev.storage.Data.Enums.UIItems;
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.Data.Objects.EnderChestPageHolder;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
+import com.github.dumbarudev.storage.HyperStorage.api.EnderChestMenu;
 import com.github.dumbarudev.storage.HyperStoragePlugin;
 import com.github.dumbarudev.storage.ItemCreator;
-import com.github.dumbarudev.storage.StorageCalculator;
-import org.apache.logging.log4j.util.Base64Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,11 +13,10 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.checkerframework.checker.guieffect.qual.UI;
 
 import java.util.List;
 
-public class EnderChestUI {
+public class EnderChestUI implements EnderChestMenu {
     private HyperStoragePlugin plugin;
     private Cache cache;
     private ItemStack[] skeletontiems= new ItemStack[9];
@@ -43,14 +41,19 @@ public class EnderChestUI {
             ItemCreator.addPersistantkeyBoolean(plugin,"Menu",true,itemStack);
         }
     }
-    public void openEnderChestUI(int currentpage, Player player){
+    @Override
+    public void openEnderChestUI(int page, Player player){
         Storage storage = cache.getPlayerStoragedatafromstorageMap(player);
 //        int allowedpages= StorageCalculator.getallowedpages(storage.getAllowed_slots_size());
         int allowedpages = storage.getAllowed_pages();
-        Inventory inventory = createSkeletonInv(currentpage,allowedpages);
-        addplayeritems(currentpage,inventory,player,storage);
+        if (page>allowedpages){
+            player.sendMessage(ChatColor.RED+"Cant find menu");
+            return;
+        }
+        Inventory inventory = createSkeletonInv(page,allowedpages);
+        addplayeritems(page,inventory,player,storage);
         player.openInventory(inventory);
-        player.playSound(player, Sound.BLOCK_CHEST_OPEN,1f,1f);
+        player.playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN,1f,0.5f);
     }
     public Inventory createSkeletonInv(int currentpage,int allowedpages){
         int lastpageslots = allowedpages%45;
@@ -61,7 +64,7 @@ public class EnderChestUI {
         }else {
             size=54;
         }
-        Inventory inventory = Bukkit.createInventory(null,size,"Ender Chest ("+currentpage+"/"+allowedpages+")");
+        Inventory inventory = Bukkit.createInventory(new EnderChestPageHolder(currentpage),size,"Ender Chest ("+currentpage+"/"+allowedpages+")");
         for (int i=0;i<inventory.getSize();i++){
             if (i<skeletontiems.length){
                 if(i==5&&currentpage!=1){

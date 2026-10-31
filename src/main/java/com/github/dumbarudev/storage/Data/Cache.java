@@ -1,10 +1,8 @@
 package com.github.dumbarudev.storage.Data;
 
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
 import com.github.dumbarudev.storage.HyperStoragePlugin;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.util.ArrayList;

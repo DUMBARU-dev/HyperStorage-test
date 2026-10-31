@@ -3,10 +3,12 @@ package com.github.dumbarudev.storage;
 import com.github.dumbarudev.storage.Data.Cache;
 import com.github.dumbarudev.storage.Data.FileHandler;
 import com.github.dumbarudev.storage.Data.PlayerDataHandler;
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
+import com.github.dumbarudev.storage.HyperStorage.api.EnderChestMenu;
+import com.github.dumbarudev.storage.HyperStorage.api.StorageMenu;
 import com.github.dumbarudev.storage.Listeners.ListenersManager;
-import com.github.dumbarudev.storage.UI.EnderChestUI;
-import com.github.dumbarudev.storage.UI.StorageUI;
+import com.github.dumbarudev.storage.HyperStorage.core.UI.EnderChestUI;
+import com.github.dumbarudev.storage.HyperStorage.core.UI.StorageUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -20,9 +22,9 @@ public class HyperStoragePlugin extends JavaPlugin {
     private FileHandler fileHandler;
     private PlayerDataHandler playerDataHandler;
     private StorageExecutor storageExecutor;
-    private StorageUI storageUI;
     private ListenersManager listenersManager;
-    private EnderChestUI enderChestUI;
+    private EnderChestMenu enderChestMenu;
+    private StorageMenu storageMenu;
     @Override
     public void onEnable() {
         preregisterServices();
@@ -30,9 +32,9 @@ public class HyperStoragePlugin extends JavaPlugin {
         cache = new Cache(this);
         playerDataHandler = new PlayerDataHandler(this);
         storageExecutor=new StorageExecutor(this);
-        storageUI=new StorageUI(this);
+        enderChestMenu=new EnderChestUI(this);
         listenersManager= new ListenersManager(this);
-        enderChestUI=new EnderChestUI(this);
+        storageMenu = new StorageUI(this);
 
 
         File file = getDataFolder();
@@ -42,6 +44,8 @@ public class HyperStoragePlugin extends JavaPlugin {
 
         getServer().getPluginCommand("storage").setExecutor(new Commands(this));
         getCommand("adminstorage").setExecutor(new Commands(this));
+        getCommand("backpack").setExecutor(new Commands(this));
+        getCommand("enderchest").setExecutor(new Commands(this));
         cacheplayers();
         Bukkit.getLogger().info(Component.text("HyperStoragePlugin enabled").color(NamedTextColor.BLUE).toString());
 
@@ -74,15 +78,13 @@ public class HyperStoragePlugin extends JavaPlugin {
         return storageExecutor;
     }
 
-    public StorageUI getStorageUI() {
-        return storageUI;
-    }
-
-    public EnderChestUI getEnderChestUI() {
-        return enderChestUI;
+    public EnderChestMenu getEnderChestMenu() {
+        return enderChestMenu;
     }
 
     public ListenersManager getListenersManager() {
         return listenersManager;
     }
+
+    public StorageMenu getStorageMenu() {return storageMenu;}
 }

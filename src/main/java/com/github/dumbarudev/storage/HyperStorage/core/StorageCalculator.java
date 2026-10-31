@@ -1,4 +1,4 @@
-package com.github.dumbarudev.storage;
+package com.github.dumbarudev.storage.HyperStorage.core;
 
 public class StorageCalculator {
     public static int getallowedpages(int totalslots){

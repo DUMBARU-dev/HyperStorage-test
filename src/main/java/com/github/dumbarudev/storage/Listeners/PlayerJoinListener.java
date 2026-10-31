@@ -1,6 +1,6 @@
 package com.github.dumbarudev.storage.Listeners;
 
-import com.github.dumbarudev.storage.Data.Objects.Storage;
+import com.github.dumbarudev.storage.HyperStorage.core.Storage;
 import com.github.dumbarudev.storage.HyperStoragePlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;

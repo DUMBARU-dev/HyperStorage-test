@@ -37,6 +37,13 @@ public class ItemCreator {
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
+    public static ItemStack addPersistantkeyID(HyperStoragePlugin plugin, String key, String data, ItemStack itemStack){
+        NamespacedKey namespacedKey = new NamespacedKey(plugin,key);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.getPersistentDataContainer().set(namespacedKey,PersistentDataType.STRING,data);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
     public static ItemStack addPersistantkeyBoolean(HyperStoragePlugin plugin, String key, boolean data, ItemStack itemStack){
         NamespacedKey namespacedKey = new NamespacedKey(plugin,key);
         ItemMeta itemMeta = itemStack.getItemMeta();
